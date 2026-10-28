@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LastBite &bull; Food-Expiry Rescue & Local Surplus Exchange</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Leaflet OpenStreetMap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              tomato: {
+                DEFAULT: '#E1372D',
+                dark: '#B91C1C',
+                light: '#FEE2E2',
+              },
+              mustard: {
+                DEFAULT: '#E5A93C',
+                dark: '#B45309',
+                light: '#FEF3C7',
+              },
+              cream: {
+                DEFAULT: '#FAF8F5',
+                card: '#FFFFFF',
+                border: '#EAE4D9',
+              },
+              charcoal: '#1F2421',
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Canvas Confetti for celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- Leaflet OpenStreetMap JS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #FAF8F5;
+        color: #1F2421;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #FAF8F5;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D5CFC5;
+        border-radius: 9999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #A8A196;
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Leaflet map custom tweaks */
+      .leaflet-popup-content-wrapper {
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #EAE4D9;
+      }
+      .leaflet-popup-content {
+        margin: 12px;
+        line-height: 1.4;
+      }
+
+      /* Custom animations */
+      @keyframes softPulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.85; transform: scale(1.03); }
+      }
+      .animate-soft-pulse {
+        animation: softPulse 2s infinite ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col selection:bg-red-200 selection:text-red-950">
+    <div id="app" class="flex-1 flex flex-col">
+      <!-- Loading placeholder -->
+      <div class="min-h-screen flex items-center justify-center bg-[#FAF8F5]">
+        <div class="text-center">
+          <div class="bg-[#E1372D] text-white px-4 py-2 rounded-full font-bold text-base inline-flex items-center gap-2 shadow-md animate-bounce">
+            <span>last</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-white inline-block"></span>
+            <span>bite</span>
+          </div>
+          <p class="text-xs font-mono text-stone-500 mt-3 font-medium">Initializing Hyper-Local Rescue Network...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Bundle Script (Zero-CORS compatible for both file:// and http://) -->
+    <script src="./src/bundle.js"></script>
+  </body>
+</html>

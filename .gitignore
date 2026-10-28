@@ -1,62 +1,38 @@
-# ============================================
-# EASY — Food-Expiry Rescue Platform
-# Team Decoders – Hackathon .gitignore
-# ============================================
-
-# ---------- Python / Backend ----------
-__pycache__/
-*.py[cod]
-*$py.class
-venv/
-.venv/
-env/
-*.egg-info/
-*.egg
-*.whl
-pip-log.txt
-pip-delete-this-directory.txt
-
-# ---------- Database ----------
-*.db
-*.sqlite3
-easy_rescue.db
-
-# ---------- Node / Frontend ----------
+# Dependencies
 node_modules/
-dist/
-build/
-.cache/
+package-lock.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# ---------- Environment & Secrets ----------
-# NEVER commit secrets, API keys, tokens, or credentials
+# Virtual Environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# Secrets & Environment Variables
 .env
 .env.*
-.env.local
-.env.development
-.env.production
-.env.staging
-*.pem
+!.env.example
 *.key
-*.cert
-*.secret
+*.pem
+secrets/
+credentials.json
 
-# ---------- Docker ----------
-docker-compose.override.yml
+# Databases & Local state
+*.db
+*.sqlite
+*.sqlite3
 
-# ---------- OS / Editor ----------
+# Production builds & temporary files
+dist/
+dist-ssr/
+build/
+*.local
 .DS_Store
 Thumbs.db
-Desktop.ini
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# ---------- Logs ----------
 *.log
-logs/
+.system_generated/

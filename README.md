@@ -1,85 +1,97 @@
-# 🚀 Hackathon Project Repository
+# LastBite &bull; Food-Expiry Rescue & Local Surplus Exchange
 
-> **Repository URL:** [https://github.com/tirrigowthamkrishna/hackathon-project](https://github.com/tirrigowthamkrishna/hackathon-project)  
-> **Owner:** `tirrigowthamkrishna`  
-> **Default Branch:** `master`
-
----
-
-## 📌 Overview
-This repository is the central codebase for our hackathon project. It has been prepared and cleaned so team members can integrate their completed project code directly into this repository using Antigravity or Git CLI.
+> **"A role-based platform connecting surplus food donors with nearby receivers — before it expires."**  
+> Built for real commercial kitchens, community shelters, and field logistics.
 
 ---
 
-## 🛠️ Step-by-Step Instructions for Teammates
-
-### Option A: If using Antigravity Agent (Easiest)
-Copy and paste this prompt directly into your Antigravity chat:
-
-```markdown
-I have my completed hackathon project on my computer. I need to push my code to our team's central GitHub repository:
-https://github.com/tirrigowthamkrishna/hackathon-project
-
-Please do the following:
-1. Check that I am logged into GitHub CLI (`gh auth status`). If not, guide me to run `gh auth login --web --git-protocol https`.
-2. Connect my current project folder to remote `origin`:
-   https://github.com/tirrigowthamkrishna/hackathon-project.git
-3. Create a branch named `feature/<my-name>-complete-project` (or checkout a feature branch).
-4. Ensure `.env`, `node_modules/`, `venv/`, and `.db` files are ignored in `.gitignore`.
-5. Stage all my code files, commit with a clear message: "feat: add complete hackathon project codebase", and push to `origin`.
-6. Open a Pull Request on GitHub against `master`.
-```
+## 🎨 Visual Identity & Palette
+- **Tomato Red** (`#E1372D`): Urgent countdowns, rescue actions, critical alerts.
+- **Mustard Gold** (`#E5A93C`): Time-sensitive alerts, match badges, custody verification.
+- **Warm Cream** (`#FAF8F5`): Canvas background and card container surfaces.
+- **Charcoal** (`#1F2421`): High-contrast typography and industrial badges.
+- **Emerald** (`#16A34A`): Verified meal savings and carbon offset indicators.
 
 ---
 
-### Option B: If pushing manually via Terminal / Git CLI
+## 🚀 Key Functional Modules Implemented
 
-#### 1. Sign in to GitHub CLI (one-time)
+### 1. Searchable Listings with Live Countdown Timers (Slide 04 & 05)
+- Every surplus batch displays a live second-by-second countdown timer calculated against food safety standards.
+- Visual Urgency Coding:
+  - 🔴 **Urgent Rescue** (`< 2 hours` remaining)
+  - 🟡 **Time Sensitive** (`2 - 6 hours` remaining)
+  - 🟢 **Scheduled Window** (`> 6 hours` remaining)
+- Real-time geofenced radius filter (1 km to 12 km slider) with Haversine distance calculations.
+- Category filters (Prepared Meals, Bakery & Pastries, Fresh Produce, Dairy & Eggs, Pantry & Grains).
+
+### 2. 5-Factor Smart Matching Engine (Slide 03, 04, 05)
+A dynamic matching score (0 - 99%) calculated based on:
+1. **Travel Distance & Radius (30% weight):** Filters out donors outside the receiver's travel boundary.
+2. **Remaining Shelf-Life vs Transit Time (25% weight):** Ensures safe distribution buffer before consumption.
+3. **Storage Condition Compatibility (20% weight):** Validates Hot-Hold (≥60°C), Cold Chain (1-4°C), Ambient, or Frozen capabilities.
+4. **Quantity vs Vehicle/Facility Capacity (15% weight):** Matches batch weight against receiver vehicle limits.
+5. **Pickup Window Overlap (10% weight):** Checks alignment between kitchen closing and receiver arrival.
+
+*Includes a dedicated **"Matching Engine Simulator"** tab with interactive sliders to inspect how weights affect matching scores.*
+
+### 3. Complete Audit Trail & Chain of Custody (Slide 04 & 05)
+Every surplus listing moves through verifiable lifecycle states:
+- `Listed` &rarr; `Claimed / Accepted` &rarr; `In Transit` &rarr; `Verified Collected` &rarr; `Expired`
+- **Doorstep Verification:** Uses a unique 4-digit Handover Token (`LB-XXXX`) to confirm safe physical handoff between the donor kitchen manager and receiver driver.
+- Real-time celebration confetti upon verified rescue.
+- Audited timeline log for each batch with actor identities, timestamps, and food condition notes.
+- One-click **Export Audited CSV Ledger** for compliance and institutional reporting.
+
+### 4. Real-Time Diversion Metrics & UNEP Food Waste Index (Slide 04, 06, 07)
+Integrates scientific benchmarks:
+- **Meal Conversion:** 1 Meal ≈ 0.42 kg (420g edible portion per UNEP baseline).
+- **Greenhouse Gas Offset:** 1 kg food waste diverted avoids **2.5 kg CO₂e**.
+- **Water Footprint Preserved:** 1 kg food waste diverted saves **1,000 Litres** of freshwater.
+- Live Diversion Rate calculation (% of listed food rescued vs discarded).
+
+### 5. Interactive OpenStreetMap Geofence (Slide 06)
+- Leaflet.js interactive map centered on local district.
+- Receiver station marker with travel boundary radius circle.
+- Pulsing red/amber markers for active surplus kitchens with direct claim popups.
+
+---
+
+## 🏃 How to Run the Prototype
+
+### Option 1: Direct Browser Launch (Zero Installation)
+Simply open the `index.html` file in any modern web browser:
 ```bash
-gh auth login --web --git-protocol https
+# On Windows PowerShell:
+Start-Process "file:///C:/Users/Admin/.gemini/antigravity/scratch/lastbite-app/index.html"
 ```
+Or double-click `index.html` in File Explorer.
 
-#### 2. Connect Your Project to this Repository
-In your local project folder where your code lives:
+### Option 2: Local HTTP Dev Server
+Run the built-in zero-dependency Node HTTP server:
 ```bash
-# If git is not yet initialized in your project:
-git init
-
-# Connect to this remote repository:
-git remote remove origin 2>nul
-git remote add origin https://github.com/tirrigowthamkrishna/hackathon-project.git
-
-# Fetch latest repository references:
-git fetch origin
+cd "C:\Users\Admin\.gemini\antigravity\scratch\lastbite-app"
+npm start
+# Server listens at http://localhost:3000
 ```
-
-#### 3. Create your feature branch and push your code
-```bash
-# Create and switch to your feature branch:
-git checkout -b feature/team-code-submission
-
-# Check your .gitignore to ensure secrets and dependency folders are excluded:
-# Make sure node_modules/, venv/, and .env are NOT staged
-
-# Stage all your files:
-git add .
-
-# Commit your project:
-git commit -m "feat: integrate complete hackathon project codebase"
-
-# Push to GitHub:
-git push -u origin feature/team-code-submission
-```
-
-#### 4. Open a Pull Request
-1. Go to [https://github.com/tirrigowthamkrishna/hackathon-project](https://github.com/tirrigowthamkrishna/hackathon-project)
-2. You will see a banner: **"feature/team-code-submission had recent pushes"** → Click **"Compare & pull request"**.
-3. Click **"Create pull request"**.
-4. The team can review and merge it into `master`!
 
 ---
 
-## 🔐 Contribution & Security Rules
-- **Never commit credentials:** Keep `.env`, API keys, passwords, database credentials, and secret tokens out of Git.
-- **Never commit dependency folders:** Do not commit `node_modules/`, `venv/`, `__pycache__/`, or `dist/`.
-- **Review before pushing:** Always check `git status` before committing.
+## 📂 Project Directory Structure
+
+```
+lastbite-app/
+├── index.html            # Main web app layout with Tailwind & Leaflet
+├── server.js             # Zero-dependency Node.js HTTP server
+├── build.js              # Bundler combining modules for offline compatibility
+├── package.json          # Project metadata and run scripts
+├── README.md             # Architecture documentation
+└── src/
+    ├── app.js            # Main application controller, state & DOM events
+    ├── bundle.js         # Single unified bundle for zero-CORS browser execution
+    ├── data/
+    │   └── mockData.js   # Pre-seeded surplus listings & UNEP constants
+    └── utils/
+        ├── engine.js     # 5-factor matching algorithm & UNEP calculators
+        └── mapHelper.js  # OpenStreetMap & Leaflet pin generator
+```
